@@ -2,6 +2,9 @@ package com.douzone.jblog.controller;
 
 import java.util.Optional;
 
+import javax.servlet.ServletContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +17,9 @@ import com.douzone.jblog.vo.UserVo;
 @Controller
 @RequestMapping("/{id:(?!assets).*}")
 public class BlogController {
-
-	@ResponseBody
+	@Autowired
+	ServletContext servletContext;
+	
 	@RequestMapping({"", "/{pathNo1}", "/{pathNo1}/{pathNo2}"})
 	public String index(
 		@PathVariable("id") String id,
@@ -32,10 +36,9 @@ public class BlogController {
 			categoryNo = pathNo1.get();
 		}
 		
-		return "BlogController.index(" + id + ", " + categoryNo + ", " + postNo + ")";
+		return "blog/main";
 	}
 	
-	@ResponseBody
 	@Auth
 	@RequestMapping("/admin/basic")
 	public String adminBasic(@PathVariable("id") String id, @AuthUser UserVo authUser) {
@@ -43,6 +46,18 @@ public class BlogController {
 			return "redirect:/";
 		}
 		
-		return "BlogController.adminBasic";
+		return "/blog/admin/basic";
+	}
+	
+	@Auth
+	@RequestMapping("/admin/category")
+	public String category(@PathVariable("id") String id) {
+		return "blog//admin/category";
+	}
+	
+	@Auth
+	@RequestMapping("/admin/write")
+	public String write(@PathVariable("id") String id) {
+		return "blog//admin/write";
 	}
 }

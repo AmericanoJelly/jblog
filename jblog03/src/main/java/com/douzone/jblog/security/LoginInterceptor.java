@@ -19,19 +19,19 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		String email = request.getParameter("email");
+		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		
-		UserVo authUser = userService.getUser(email,password);
+		UserVo authUser = userService.getUser(id,password);
 		if(authUser == null) {
-			request.setAttribute("email",email);
+			request.setAttribute("id",id);
 			request.setAttribute("result","fail");
 			
 			request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response);
 			return false;
 		}
 		/* session 처리 */
-		  System.out.println("인터셉터로그인인터셉터"+authUser);
+		  System.out.println("로그인인터셉터"+authUser);
 	      HttpSession session = request.getSession(true);
 	      session.setAttribute("authUser", authUser);
 	      

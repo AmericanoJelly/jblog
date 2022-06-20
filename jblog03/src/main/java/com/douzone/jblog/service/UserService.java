@@ -3,6 +3,8 @@ package com.douzone.jblog.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.douzone.jblog.repository.BlogRepository;
+import com.douzone.jblog.repository.CategoryRepository;
 import com.douzone.jblog.repository.UserRepository;
 import com.douzone.jblog.vo.UserVo;
 
@@ -24,14 +26,11 @@ public class UserService {
 	}
 	
 	public UserVo getUser(UserVo vo) {
-		return userRepository.findByEmailAndPassword(vo);
+		return userRepository.findByIdAndPassword(vo);
 	}
 
-	public UserVo getUser(Long no) {
-		return userRepository.findByNo(no);
+	public UserVo getUser(String id) {
+		return userRepository.findById(id);
 	}
 
-	public void updateUser(UserVo vo) {
-		userRepository.update(vo);
-	}
 }

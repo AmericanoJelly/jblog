@@ -3,47 +3,24 @@
 <mapper namespace="user">
 	<insert id="insert" parameterType="uservo">
 	<![CDATA[
-	 insert into user values (null, #{name }, #{email }, #{password }, #{gender }, 'USER', now())
-	 ]]>
+	 insert into user values (#{id}, #{name}, #{password})
+	  ]]>
 	</insert>
 	
-	<select id="findByEmailAndPassword" parameterType="uservo" resultType="uservo">
+	<select id="findByIdAndPassword" parameterType="uservo" resultType="uservo">
 	<![CDATA[
-		select no, name, role  
+		select id, name, password  
 			from user  
-		  	where email=#{email }
+		  	where id=#{id }
 			and password =#{password }
 	]]>
 	</select>
 	
-	<select id="findByNo" parameterType="long" resultType="uservo">
+		<select id="findById" parameterType="String" resultType="uservo">
 	<![CDATA[
-		select no, name, email, gender
+		select id, name, password
 			from user  
-		  	where no=#{no }
+		  	where id=#{id }
 	]]>
 	</select>
-	
-	<update id="update" parameterType="uservo">
-		<choose>
-			<when test='password == ""'>
-				<![CDATA[
-				update user 
-		   		   set name=#{name }, gender=#{gender } 
-		 		where no=#{no }
-				]]>		
-			</when>
-			<otherwise>
-				<![CDATA[
-				update user 
-				   set name=#{name }, gender=#{gender }, password=#{password } 
-				 where no=#{no }
-				]]>			
-			</otherwise>
-		</choose>
-	</update>
-	
-	
-	
-	
 </mapper>
