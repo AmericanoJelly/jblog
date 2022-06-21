@@ -15,5 +15,15 @@ public class BlogService {
 	public void join(UserVo vo) {
 		blogRepository.insert(vo);
 	}
+	
+	
+	public BlogVo getBlogInfo(String id) {
+		return blogRepository.getBlogInfo(id);
+	}
+
+
+	public void updateBlog(BlogVo vo) {
+		blogRepository.updateBlog(vo);
+	}
 
 }

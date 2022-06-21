@@ -7,6 +7,31 @@
 	 insert into blog values (#{id}, '${name}님의 블로그', '/assets/images/default.jpg')
 	  ]]>
 	</insert>
-
-
+	
+	<select id="getBlogInfo" parameterType="string" resultType="blogvo">
+		<![CDATA[
+		select id, title, logo 
+		from blog 
+		where id=#{id }
+		]]>
+	</select>
+	
+	<update id="updateBlog" parameterType="blogvo">
+	<choose>
+			<when test="logo != null">
+			<![CDATA[
+				update blog 
+				set title=#{title }, logo=#{logo }
+				where id=#{id }
+			]]>
+			</when>
+			<otherwise>
+			<![CDATA[
+				update blog 
+				set title=#{title }
+				where id=#{id }
+			]]>
+			</otherwise>
+		</choose>
+	</update>
 </mapper>
