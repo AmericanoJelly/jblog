@@ -1,4 +1,4 @@
-package com.douzone.jbog.aspect;
+package com.douzone.jblog.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

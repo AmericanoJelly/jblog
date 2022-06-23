@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="blog">
+	
+	<insert id="insert" parameterType="uservo">
+	<![CDATA[
+	 insert into blog values (#{id}, '${name}님의 블로그', '/assets/images/default.jpg')
+	  ]]>
+	</insert>
+	
+	<select id="getBlogInfo" parameterType="string" resultType="blogvo">
+		<![CDATA[
+		select id, title, logo 
+		from blog 
+		where id=#{id }
+		]]>
+	</select>
+	
+	<update id="updateBlog" parameterType="blogvo">
+	<choose>
+			<when test="logo != null">
+			<![CDATA[
+				update blog 
+				set title=#{title }, logo=#{logo }
+				where id=#{id }
+			]]>
+			</when>
+			<otherwise>
+			<![CDATA[
+				update blog 
+				set title=#{title }
+				where id=#{id }
+			]]>
+			</otherwise>
+		</choose>
+	</update>
+	
+	<insert id="write" parameterType="postvo">
+		<![CDATA[
+			insert into post values (null, #{title }, #{contents }, #{category_no })
+		]]>
+	</insert>
+	
+	<select id="getPost" parameterType="long" resultType="postvo">
+		<choose>
+		<when test="category_no == 0">
+		<![CDATA[
+			select p.no, p.title, p.contents, p.category_no, c.blog_id 
+			from post p, category c
+			where c.no = p.category_no
+			and c.blog_id =#{id}	
+		]]>	
+		</when>
+		<otherwise>
+		<![CDATA[
+			select no, title, contents, category_no from post where category_no=#{category_no }
+		]]>	
+		</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findByNo" parameterType="map" resultType="postvo">
+		<choose>
+		<when test="category_no == 0">
+		<![CDATA[
+			select p.no, p.title, p.contents, p.category_no, c.blog_id 
+			from post p, category c
+			where c.no = p.category_no
+            and c.blog_id =#{id}
+            limit 0,1
+		]]>
+		</when>
+		<when test="no == 0">
+			select no, title, contents, category_no 
+			from post 
+			where category_no=#{category_no } order by no limit 0, 1
+		</when>
+		<otherwise>
+		<![CDATA[
+			select no, title, contents, category_no 
+			from post 
+			where category_no=#{category_no } and no=#{postNo }
+		]]>
+		</otherwise>
+		</choose>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

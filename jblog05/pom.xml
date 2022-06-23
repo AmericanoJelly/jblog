@@ -5,7 +5,7 @@
 		<artifactId>jblog</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>jblog03</artifactId>
+	<artifactId>jblog05</artifactId>
 	<packaging>war</packaging>
 	
 	<properties>
@@ -16,7 +16,8 @@
 		<org.springframework-version>5.3.18</org.springframework-version>
 	</properties>
 
-	<dependencies>
+		<dependencies>
+		
 		<!-- Spring Context -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
@@ -64,6 +65,7 @@
 			<artifactId>mybatis</artifactId>
 			<version>3.5.9</version>
 		</dependency>
+		
 		<!-- MyBatis Spring -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -129,10 +131,12 @@
 		    <version>2.2</version>
 		    <scope>provided</scope>
 		</dependency>	
+
 	</dependencies>
+	
 
 	<build>
-		<finalName>jblog03</finalName>
+		<finalName>jblog05</finalName>
 		<plugins>
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
@@ -145,7 +149,7 @@
 			    <version>1.1</version>
 			    <configuration>
 			    	<url>http://192.168.10.38:8080/manager/text</url>
-			    	<path>/jblog03</path>
+			    	<path>/jblog05</path>
 			    	<username>admin</username>
 			    	<password>manager</password>
 			    </configuration>
