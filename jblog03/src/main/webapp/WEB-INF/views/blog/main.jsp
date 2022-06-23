@@ -15,14 +15,14 @@
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">
-					<h4>${postVo.title}</h4>
+					<h4>${postvo.title }</h4>
 					<p>
-						${postVo.contents}
+						${postvo.contents }
 					<p>
 				</div>
 				<ul class="blog-list">
 				<c:forEach items='${postVo }' var='vo' varStatus="status">
-					<li><a href="${pageContext.request.contextPath}/${blogVo.id }/${vo.category_no }">${vo.title }</a></li>
+					<li><a href="${pageContext.request.contextPath}/${blogVo.id }/${vo.category_no }/${vo.no }">${vo.title }</a></li>
 				</c:forEach>
 				</ul>
 			</div>

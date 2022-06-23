@@ -66,6 +66,12 @@ public class BlogController {
 		
 		List<PostVo>postVo = blogService.getPost(category_no);
 		model.addAttribute("postVo", postVo);
+		
+		
+		PostVo postvo = blogService.findByNo(category_no, postNo);
+		model.addAttribute("postvo", postvo);
+		System.out.println("postvo: "+ postvo );
+		
 		return "blog/main";
 	}
 	

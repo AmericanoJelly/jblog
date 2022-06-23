@@ -39,4 +39,10 @@ public class BlogService {
 		return blogRepository.getPost(category_no);
 	}
 
+
+	public PostVo findByNo(Long category_no, Long postNo) {
+		return blogRepository.findByNo(category_no, postNo);
+	}
+
+
 }

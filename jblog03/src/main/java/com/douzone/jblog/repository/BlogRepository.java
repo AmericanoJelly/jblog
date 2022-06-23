@@ -34,5 +34,12 @@ public class BlogRepository {
 	public List<PostVo> getPost(Long category_no) {
 		return sqlSession.selectList("blog.getPost",category_no);
 	}
+	
+	public PostVo findByNo(Long category_no, Long postNo) {
+		PostVo vo = new PostVo();
+		vo.setCategory_no(category_no);
+		vo.setNo(postNo);
+		return  sqlSession.selectOne("blog.findByNo", vo);
+	}
 
 }

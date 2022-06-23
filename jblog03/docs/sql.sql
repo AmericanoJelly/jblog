@@ -17,5 +17,20 @@ select no, name, description, blog_id
 			 from category
              where blog_id = 'nn'
 			 order by no;
-             
+
+select * from post where category_no ='19';
+
+select no, title, contents, category_no from post where category_no=15;
+
+
+select no, title, contents, category_no 
+			from post 
+			where category_no=15 and no= 2;
+select no, title, contents, category_no 
+			from post 
+			where category_no=15 order by no limit 0,1;
+            
+select no, title, contents, category_no 
+from post 
+where category_no order by no limit 0, 1;
 

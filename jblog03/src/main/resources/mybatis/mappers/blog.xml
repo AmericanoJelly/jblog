@@ -47,6 +47,28 @@
 		]]>	
 	</select>
 	
+	<select id="findByNo" parameterType="postvo" resultType="postvo">
+		<choose>
+		<when test="category_no == 0">
+			select no, title, contents, category_no 
+			from post 
+			where category_no order by no limit 0, 1
+		</when>
+		<when test="no == 0">
+			select no, title, contents, category_no 
+			from post 
+			where category_no=#{category_no } order by no limit 0, 1
+		</when>
+		<otherwise>
+		<![CDATA[
+			select no, title, contents, category_no 
+			from post 
+			where category_no=#{category_no } and no=#{no }
+		]]>
+		</otherwise>
+		</choose>
+	</select>
+	
 </mapper>
 
 
