@@ -38,7 +38,14 @@
 			<h2>카테고리</h2>
 			<ul>
 				<c:forEach items='${list }' var='vo' varStatus="status">
-					<li><a href="${pageContext.request.contextPath}/${blogVo.id }/${vo.no }">${vo.name }</a></li>
+					<c:choose>
+						<c:when test="${vo.count == 0}">
+							<li><a href="">${vo.name }</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="${pageContext.request.contextPath}/${blogVo.id }/${vo.no }">${vo.name }</a></li>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 			</ul>
 		</div>

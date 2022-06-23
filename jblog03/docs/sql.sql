@@ -34,3 +34,15 @@ select no, title, contents, category_no
 from post 
 where category_no order by no limit 0, 1;
 
+select no, title, contents, category_no from post where category_no order by category_no limit 0,1;
+
+select p.no, p.title, p.contents, p.category_no, c.blog_id 
+			from post p, category c
+			where c.no = p.category_no
+            and c.blog_id = "nn"
+            limit 0,1;
+            
+select p.no, p.title, p.contents, p.category_no, c.blog_id 
+from post p, category c
+where c.no = p.category_no
+and c.blog_id = "nn";

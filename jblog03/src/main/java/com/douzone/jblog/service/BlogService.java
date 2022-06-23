@@ -35,13 +35,13 @@ public class BlogService {
 	}
 
 
-	public List<PostVo> getPost(Long category_no) {
-		return blogRepository.getPost(category_no);
+	public List<PostVo> getPost(Long category_no, String id) {
+		return blogRepository.getPost(category_no, id);
 	}
 
 
-	public PostVo findByNo(Long category_no, Long postNo) {
-		return blogRepository.findByNo(category_no, postNo);
+	public PostVo findByNo(Long category_no, Long postNo, String id) {
+		return blogRepository.findByNo(category_no, postNo, id);
 	}
 
 

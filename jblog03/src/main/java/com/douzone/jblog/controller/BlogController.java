@@ -64,14 +64,16 @@ public class BlogController {
 		List<CategoryVo>list = categoryService.getCategoryList(id);
 		model.addAttribute("list", list);
 		
-		List<PostVo>postVo = blogService.getPost(category_no);
+		List<PostVo>postVo = blogService.getPost(category_no, id);
 		model.addAttribute("postVo", postVo);
 		
-		
-		PostVo postvo = blogService.findByNo(category_no, postNo);
+		if(postNo == 0L) {
+			model.addAttribute("postvo", postVo.get(0));	
+		}else {
+		PostVo postvo = blogService.findByNo( category_no, postNo, id);
 		model.addAttribute("postvo", postvo);
-		System.out.println("postvo: "+ postvo );
-		
+		}
+	
 		return "blog/main";
 	}
 	
