@@ -23,16 +23,23 @@
 		      			<th>설명</th>
 		      			<th>삭제</th>      			
 		      		</tr>
+		      		<c:set var='count' value='${fn:length(list) }' />
+		      		<c:forEach items='${list }' var='vo' varStatus="status">
 					<tr>
-						<td>3</td>
-						<td>미분류</td>
-						<td>10</td>
-						<td>카테고리를 지정하지 않은 경우</td>
-						<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
+						<td>${status.index+1 }</td>
+						<td>${vo.name }</td>
+						<td>${vo.count }</td>
+						<td>${vo.description }</td>
+						<td><a href='${pageContext.request.contextPath}/${authUser.id }/admin/category/delete/${vo.no }'>
+							<img src="${pageContext.request.contextPath}/assets/images/delete.jpg">
+							</a>
+						</td>
 					</tr>  
+					</c:forEach>
 				</table>
       	
       			<h4 class="n-c">새로운 카테고리 추가</h4>
+      			<form method="post" action="${pageContext.request.contextPath}/${authUser.id }/admin/category">
 		      	<table id="admin-cat-add">
 		      		<tr>
 		      			<td class="t">카테고리명</td>
@@ -40,13 +47,14 @@
 		      		</tr>
 		      		<tr>
 		      			<td class="t">설명</td>
-		      			<td><input type="text" name="desc"></td>
+		      			<td><input type="text" name="description"></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="s">&nbsp;</td>
 		      			<td><input type="submit" value="카테고리 추가"></td>
 		      		</tr>      		      		
 		      	</table> 
+		      	</form>
 			</div>
 		</div>
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>

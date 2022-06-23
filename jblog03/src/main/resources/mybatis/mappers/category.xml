@@ -7,6 +7,26 @@
 	 insert into category values (null, '없음', '없음', #{id})
 	  ]]>
 	</insert>
-
-
+	
+	<select id="findAll" resultType="categoryvo">
+		<![CDATA[
+			select c.no, c.name, (select count(*) from post p where category_no=c.no)as count
+			,c.description, c.blog_id
+			 from category c
+			 where c.blog_id=#{blog_id }
+			 order by c.no
+		]]>
+	</select>
+	
+	<insert id="insertCategory" parameterType="categoryvo">
+		<![CDATA[
+		insert into category values(null, #{name }, #{description }, #{blog_id })
+		]]>
+	</insert>
+	
+	<delete id="deleteCategory" parameterType="map">
+		<![CDATA[
+		delete from category where no=#{no }
+		]]>
+	</delete>
 </mapper>

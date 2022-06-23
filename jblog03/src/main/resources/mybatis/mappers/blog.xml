@@ -34,4 +34,26 @@
 			</otherwise>
 		</choose>
 	</update>
+	
+	<insert id="write" parameterType="postvo">
+		<![CDATA[
+			insert into post values (null, #{title }, #{contents }, #{category_no })
+		]]>
+	</insert>
+	
+	<select id="getPost" parameterType="long" resultType="postvo">
+		<![CDATA[
+			select no, title, contents, category_no from post where category_no=#{category_no }
+		]]>	
+	</select>
+	
 </mapper>
+
+
+
+
+
+
+
+
+

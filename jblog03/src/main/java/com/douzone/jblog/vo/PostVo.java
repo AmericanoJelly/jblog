@@ -6,6 +6,7 @@ public class PostVo {
 	private String title;
 	private String contents;
 	private long category_no;
+	
 	public long getNo() {
 		return no;
 	}
